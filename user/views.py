@@ -3,7 +3,6 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
 from .models import User
 from .permissions import IsOwnerProfileOrReadOnly
 from .serializers import UserProfileSerializer
@@ -31,9 +30,4 @@ class UserProfileListView(ListCreateAPIView):
         user = self.request.user
         serializer.save(user=user)
 
-
-class UserProfileDetailView(RetrieveUpdateDestroyAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserProfileSerializer
-    permission_classes = [IsOwnerProfileOrReadOnly, IsAuthenticated]
 

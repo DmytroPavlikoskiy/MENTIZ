@@ -19,3 +19,11 @@ class UserProfileSerializer(serializers.ModelSerializer):
             instance.set_password(password)
         instance.save()
         return instance
+
+    def update(self, instance, validated_data):
+        instance.email = validated_data.get('email', instance.email)
+        instance.user_name = validated_data.get('user_name', instance.user_name)
+        instance.first_name = validated_data.get('first_name', instance.first_name)
+        instance.start_date = validated_data.get('start_date', instance.start_date)
+        instance.about = validated_data.get('about', instance.about)
+        instance.is_staff = validated_data.get('is_staff', instance.is_staff)
